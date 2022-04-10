@@ -10,9 +10,10 @@
             <el-form-item>
                 <!-- 图标 -->
                 <span class="svg-container">
-                    <el-icon>
+                    <!-- <el-icon>
                         <avatar />
-                    </el-icon>
+                    </el-icon> -->
+                    <svg-icon icon="user"></svg-icon>
                 </span>
                 <!-- 输入框 -->
                 <el-input placeholder="username" name="username" type="text"></el-input>
@@ -25,15 +26,25 @@
                     <!-- <el-icon>
                         <avatar />
                     </el-icon> -->
-                    <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+
+                    <!-- 使用外部的svg -->
+                    <!-- <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon> -->
+
+                    <svg-icon icon="password"></svg-icon>
                 </span>
                 <!-- 输入框 -->
-                <el-input placeholder="password" name="password"></el-input>
+                <el-input
+                  placeholder="password"
+                   name="password"></el-input>
 
                 <span class="show-pwd">
-                    <el-icon>
+                    <!-- <el-icon>
                         <avatar />
-                    </el-icon>
+                    </el-icon> -->
+
+                    <span class="svg-container">
+                        <svg-icon icon="eye"></svg-icon>
+                    </span>
                 </span>
             </el-form-item>
 
@@ -44,8 +55,10 @@
 </template>
 
 <script setup>
-import { Avatar } from '@element-plus/icons'
-import SvgIcon from '../../../src/components/SvgIcon/index.vue'
+// 导入的组件可以直接使用
+// import { Avatar } from '@element-plus/icons'
+// SvgIcon 已经全局导入了，这里可以注释了
+// import SvgIcon from '../../../src/components/SvgIcon/index.vue'
 import {} from 'vue'
 </script>
 
