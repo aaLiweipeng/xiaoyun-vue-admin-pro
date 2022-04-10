@@ -1,5 +1,6 @@
 <template>
     <div class="login-container">
+
         <el-form class="login-form">
             <div class="title-container">
                 <h3 class="title">用户登录</h3>
@@ -21,9 +22,10 @@
             <el-form-item>
                 <!-- 图标 -->
                 <span class="svg-container">
-                    <el-icon>
+                    <!-- <el-icon>
                         <avatar />
-                    </el-icon>
+                    </el-icon> -->
+                    <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
                 </span>
                 <!-- 输入框 -->
                 <el-input placeholder="password" name="password"></el-input>
@@ -43,6 +45,7 @@
 
 <script setup>
 import { Avatar } from '@element-plus/icons'
+import SvgIcon from '../../../src/components/SvgIcon/index.vue'
 import {} from 'vue'
 </script>
 
