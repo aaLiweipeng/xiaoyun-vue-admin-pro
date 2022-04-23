@@ -12,15 +12,16 @@ export default {
      * @returns 返回Promise
      */
     login (context, userInfo) {
-      // 结构
+      // 解构
       const { username, password } = userInfo
+      console.log('user.js username = ', username, 'password = ', password)
       return new Promise((resolve, reject) => {
         login({
           username,
           password: md5(password) // md5 加密的密码
         })
           .then(data => {
-            resolve()
+            resolve(data)
           })
           .catch(err => {
             reject(err)

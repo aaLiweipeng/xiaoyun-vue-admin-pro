@@ -1,7 +1,9 @@
 <template>
     <div class="login-container">
 
-        <el-form class="login-form"
+        <el-form
+          class="login-form"
+          ref="loginFormRef"
           :model="loginForm"
           :rules="loginRules">
 
@@ -62,7 +64,12 @@
             </el-form-item>
 
             <!-- 登录按钮 -->
-            <el-button type="primary" style="width: 100%; margin-bottom">登录</el-button>
+            <el-button
+              type="primary"
+              style="width: 100%; margin-bottom"
+              :loading="loading"
+              @click="handleLogin"
+            >登录</el-button>
         </el-form>
     </div>
 </template>
@@ -72,11 +79,12 @@
 // import { Avatar } from '@element-plus/icons'
 // SvgIcon 已经全局导入了，这里可以注释了
 // import SvgIcon from '../../../src/components/SvgIcon/index.vue'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { validatePassword } from './rules'
+import { useStore } from 'vuex'
 
 // 数据源
-const loginForm = ref({
+const loginForm = reactive({
   username: 'super-admin',
   password: '123456'
 })
@@ -109,6 +117,47 @@ const onChangePwdType = () => {
   } else {
     passwordType.value = 'password'
   }
+}
+
+//
+// 登录动作处理
+const loading = ref(false)
+const store = useStore()
+
+// Vue3的话，
+// 这里初始化为空之后，代码会去template中找，看看有没有loginFromRef，
+// 有的话则把对应的标签化为实例，存到这里
+// Vue2获取refs this.$refs.loginFormRef
+const loginFormRef = ref(null)
+
+/**
+ * 登录按钮的触发回调
+ */
+const handleLogin = () => {
+  /**
+   * 1.进行表单校验；
+   * 2.触发登录动作；
+   * 3.进行登录后处理;
+   */
+  console.log('loginFormRef.value = ', loginFormRef.value)
+  loginFormRef.value.validate(valid => {
+    // 校验不通过，直接退出
+    if (!valid) return
+
+    // 2.触发登录动作；
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm)
+      .then((data) => {
+        loading.value = false
+        console.log('登录接口访问成功/n', data)
+        // TODO: 3.登录后操作
+      })
+      .catch(err => {
+        console.log(err)
+        loading.value = false
+      })
+  })
 }
 </script>
 
