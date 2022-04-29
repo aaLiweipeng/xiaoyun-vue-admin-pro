@@ -5,6 +5,7 @@ import { sysLogin } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
+import router from '../../router'
 
 export default {
   namespaced: true, // 表这是一个单独的模块
@@ -40,6 +41,8 @@ export default {
           .then(data => {
             // 传mutations
             console.log('user.js login then data -- ', data)
+            // 登录后操作
+            router.push('/')
             this.commit('user/setToken', data.token)
             resolve(data)
           })
