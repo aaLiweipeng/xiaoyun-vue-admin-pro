@@ -1,10 +1,55 @@
 <template>
-    <div class="">Layout 页面</div>
+    <div class="app-wrapper">
+
+       <!-- 左侧 menu -->
+       <sidebar
+         id="guide-sidebar"
+         class="sidebar-container"
+         :style="{ backgroundColor: myvariables.menuBg }" />
+
+        <!-- 右侧 主要内容 -->
+        <div class="main-container">
+            <!-- 顶部的 navbar -->
+            <div class="fixed-header">
+            <navbar />
+            </div>
+
+            <!-- 内容区 -->
+            <app-main />
+        </div>
+
+    </div>
 </template>
 
 <script setup>
 import {} from 'vue'
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
+import AppMain from './components/AppMain'
+import myvariables from '@/styles/variables.scss'
+
+console.log('myvariables --- ', myvariables)
 </script>
 
 <style lang="scss" scoped>
+@import '~@/styles/mixin.scss';
+@import '~@/styles/variables.scss';
+
+// 最外层布局
+.app-wrapper {
+    @include clearfix;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+// 右侧顶部的 navbar
+.fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    // 父布局宽度（窗口宽 - 左侧栏宽）
+    width: calc(100% - #{$sideBarWidth});
+}
 </style>
