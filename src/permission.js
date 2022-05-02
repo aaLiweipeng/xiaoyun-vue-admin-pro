@@ -13,7 +13,16 @@ router.beforeEach(async (to, from, next) => {
       // 要去登录页的，送去主页
       next('/')
     } else {
-      // 要去主页的，则直接放行
+      // 要去主页的，则
+
+      // 判断用户资料是否获取
+      // 若不存在用户信息，则需要获取用户信息
+      if (!store.getters.hasUserInfo) {
+        // 触发获取用户信息的 action
+        await store.dispatch('user/getUserInfo')
+        console.log('perssion.js had dispatched (\'user/getUserInfo\')')
+      }
+      // 获取完毕之后放行
       next()
     }
   } else {

@@ -150,11 +150,11 @@ const handleLogin = () => {
       .dispatch('user/login', loginForm)
       .then((data) => {
         loading.value = false
-        console.log('登录接口访问成功/n', data)
+        console.log('登录接口访问成功 \n', data)
         // TODO: 3.登录后操作
       })
       .catch(err => {
-        console.log(err)
+        console.log('login/index.vue dispatch err', err)
         loading.value = false
       })
   })

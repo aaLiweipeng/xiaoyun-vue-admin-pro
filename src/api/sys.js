@@ -1,6 +1,9 @@
 /**
- * 请求封装层、构建层
+ * 请求的封装层、构建层
+ * 用url、method、上层（业务调用层）传来的数据等元素，构建一个请求
  */
+// 这里的request实例是axios.create的返回结果，request实例只要接收一个url，
+// 即可进行请求，并返回一个 包含结果的promise【参似于ec-pro】
 import request from '@/utils/request'
 
 /**
@@ -13,5 +16,15 @@ export const sysLogin = data => {
     url: '/sys/login',
     method: 'POST',
     data
+  })
+}
+
+/**
+ * 获取用户信息
+ */
+export const getUserInfo = () => {
+  return request({
+    url: '/sys/profile',
+    method: 'GET'
   })
 }
