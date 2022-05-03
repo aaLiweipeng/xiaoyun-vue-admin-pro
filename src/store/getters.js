@@ -10,6 +10,7 @@ const getters = {
    * @returns true 表示已存在用户信息
    */
   hasUserInfo: state => {
+    console.log('getters state.user.userInfo \n', state.user.userInfo)
     return JSON.stringify(state.user.userInfo) !== '{}'
   }
 }

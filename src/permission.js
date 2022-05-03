@@ -9,6 +9,7 @@ const whiteList = ['/login']
 router.beforeEach(async (to, from, next) => {
 // 存在 token ，则进入主页
   if (store.getters.token) {
+    console.log('permission token existed！')
     if (to.path === '/login') {
       // 要去登录页的，送去主页
       next('/')

@@ -6,6 +6,7 @@ import md5 from 'md5'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '../../router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   namespaced: true, // 表这是一个单独的模块
@@ -31,6 +32,7 @@ export default {
     // 存 userInfo
     setUserInfo (state, userInfo) {
       state.userInfo = userInfo
+      console.log('modules/user.js setUserInfo ---\n', userInfo)
     }
   },
   actions: {
@@ -58,6 +60,8 @@ export default {
             // 调用VueX
             // 传mutations
             this.commit('user/setToken', data.token)
+            // 保存登录时间【获取token的时间戳】
+            setTimeStamp()
             resolve(data)
           })
           .catch(err => {
