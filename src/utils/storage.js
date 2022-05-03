@@ -22,15 +22,16 @@ export const getItem = key => {
 }
 
 /**
- * 删除数据
+ * 删除本地缓存数据
+ * @param {*} key 要删除的键名
  */
 export const removeItem = key => {
   window.localStorage.removeItem(key)
 }
 
 /**
- * 删除所有数据
+ * 删除所有本地缓存数据
  */
-export const removeAllItem = key => {
+export const removeAllItem = () => {
   window.localStorage.clear()
 }

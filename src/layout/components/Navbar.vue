@@ -31,7 +31,7 @@
             </a>
 
             <!-- divided 用于显示分割线。看文档 -->
-            <el-dropdown-item divided>
+            <el-dropdown-item divided @click="logout">
               退出登录
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -42,7 +42,13 @@
 </template>
 
 <script setup>
-import {} from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+// 退出登录点击事件
+const logout = () => {
+  store.dispatch('user/logout')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -62,10 +68,12 @@ import {} from 'vue'
 
     ::v-deep .avatar-container {
       cursor: pointer;// 指定 鼠标移过变成手指图标
+
       // 自定义菜单触发按钮组外框
       .avatar-wrapper {
         margin-top: 5px;
         position: relative;
+
         // 头像显示部分
         .el-avatar {
           --el-avatar-background-color: none;// 去掉多余的灰色背景
