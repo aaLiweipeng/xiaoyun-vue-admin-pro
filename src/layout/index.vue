@@ -28,7 +28,6 @@ import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
 import myvariables from '@/styles/variables.scss'
 
-// console.log('myvariables --- ', myvariables)
 </script>
 
 <style lang="scss" scoped>
