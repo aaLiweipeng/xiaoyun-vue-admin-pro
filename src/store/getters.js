@@ -1,3 +1,5 @@
+import variables from '@/styles/variables.scss'
+
 const getters = {
   // 在store/index.js中注册后，
   // 可以取到 子模块的state字段
@@ -12,6 +14,8 @@ const getters = {
   hasUserInfo: state => {
     console.log('getters state.user.userInfo \n', state.user.userInfo)
     return JSON.stringify(state.user.userInfo) !== '{}'
-  }
+  },
+
+  cssVar: state => variables
 }
 export default getters
