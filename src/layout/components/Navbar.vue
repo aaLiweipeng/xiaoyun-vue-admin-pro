@@ -102,7 +102,6 @@ const logout = () => {
 
         // 头像显示部分
         .el-avatar {
-          --el-avatar-background-color: none;// 去掉多余的灰色背景
           margin-right: 12px;// 跟小齿轮i标签保持距离
         }
       }

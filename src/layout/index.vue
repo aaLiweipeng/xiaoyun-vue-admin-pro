@@ -53,7 +53,7 @@ import myvariables from '@/styles/variables.scss'
   // 父布局宽度（窗口宽 - 左侧栏宽）
   width: calc(100% - #{$sideBarWidth});// sideBarWidth 210px
   // 使得hide样式影响下，nav变化width时候，有一个动画过程
-  transition: width 0.28s;
+  transition: width #{$sideBarDuration};
 }
 
 //.hideSidebar下.fixed-header样式
