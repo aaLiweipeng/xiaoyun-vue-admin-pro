@@ -1,5 +1,7 @@
 <template>
-    <div class="app-wrapper">
+    <!-- :class= 指定 **整个侧边栏的宽度和缩放动画** -->
+    <div class="app-wrapper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
 
        <!-- 左侧 menu -->
        <sidebar
@@ -11,7 +13,7 @@
         <div class="main-container">
             <!-- 顶部的 navbar -->
             <div class="fixed-header">
-            <navbar />
+                <navbar />
             </div>
 
             <!-- 内容区 -->
@@ -44,11 +46,18 @@ import myvariables from '@/styles/variables.scss'
 
 // 右侧顶部的 navbar
 .fixed-header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9;
-    // 父布局宽度（窗口宽 - 左侧栏宽）
-    width: calc(100% - #{$sideBarWidth});
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  // 父布局宽度（窗口宽 - 左侧栏宽）
+  width: calc(100% - #{$sideBarWidth});// sideBarWidth 210px
+  // 使得hide样式影响下，nav变化width时候，有一个动画过程
+  transition: width 0.28s;
+}
+
+//.hideSidebar下.fixed-header样式
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});// hideSideBarWidth 54px
 }
 </style>
