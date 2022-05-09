@@ -11,7 +11,34 @@
 </template>
 
 <script setup>
-import {} from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+// 生成数组数据
+const breadcrumbData = ref([])
+
+const getBreadcrumbData = () => {
+  breadcrumbData.value = route.matched.filter(
+    // 类似于菜单规则【有icon、title，才能在左侧菜单展示】
+    // 这里的规则是 有title，才能在面包屑上展示
+    item => item.meta && item.meta.title
+  )
+  console.log('route.matched --- ', route.matched)
+  console.log('breadcrumbData.value --- ', breadcrumbData.value)
+}
+
+// 监听路由变化时触发
+watch(
+  route, // 监听对象
+  () => {
+    // 监听的 回调函数
+    getBreadcrumbData()
+  },
+  {
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped>
