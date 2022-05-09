@@ -3,6 +3,8 @@
   <div class="navbar">
 
     <hamburger class="hamburger-container" />
+    <!-- 面包屑 -->
+    <breadcrumb class="breadcrumb-container" />
 
     <div class="navbar-sub-right">
       <!-- 头像下拉菜单外框 -->
@@ -48,6 +50,7 @@
 <script setup>
 import { useStore } from 'vuex'
 import Hamburger from '../../components/Hamburger/hamburger.vue'
+import Breadcrumb from '../../components/Breadcrumb/index.vue'
 
 const store = useStore()
 // 退出登录点击事件
@@ -58,18 +61,12 @@ const logout = () => {
 
 <style lang="scss" scoped>
 .navbar {
-  display: flex;
+  display: flex;// 划重点
   height: 50px;
   overflow: hidden;
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
-  .navbar-sub-right{
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-  }
 
   // 左侧菜单汉堡开关图标
   .hamburger-container {
@@ -83,6 +80,17 @@ const logout = () => {
       // 鼠标移过时，背景变灰色
       background: rgba(0, 0, 0, 0.1);
     }
+  }
+
+  // 面包屑
+  .breadcrumb-container {
+    float: left;
+  }
+
+  .navbar-sub-right{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
   }
 
   // 居右侧头像菜单
