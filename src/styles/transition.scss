@@ -1,0 +1,18 @@
+// 面包屑动画
+// 动画过程时延
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+    transition: all 0.5s;
+}
+// 进来时从右20x处 以可见度0%出现, 左滑到原处，同时变化到100%
+// 出去时 以右20x处 可见度0% 为终点, 从原处，100%开始变化
+.breadcrumb-enter-from,
+.breadcrumb-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+}
+// 指定出场组件，不占用空间，
+// 使得进场组件可以在出场组件的原位进行动画【NB 牛掰】
+.breadcrumb-leave-active {
+    position: absolute;
+}

@@ -1,20 +1,24 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
+    <!-- 添加动画 -->
+    <transition-group name="breadcrumb">
 
-    <el-breadcrumb-item
-      v-for="(item, index) in breadcrumbData"
-      :key="item.path"
-    >
-      <!-- 面包屑的最后一项 不可点击项 -->
-      <span v-if="index === breadcrumbData.length - 1" class="no-redirect">
-          {{item.meta.title}}
-      </span>
+      <el-breadcrumb-item
+        v-for="(item, index) in breadcrumbData"
+        :key="item.path"
+      >
+        <!-- 面包屑的最后一项 不可点击项 -->
+        <span v-if="index === breadcrumbData.length - 1" class="no-redirect">
+            {{item.meta.title}}
+        </span>
 
-      <!-- 可点击项 -->
-      <a v-else class="redirect" @click.prevent="onLinkClick(item)">
-          {{item.meta.title}}
-      </a>
-    </el-breadcrumb-item>
+        <!-- 可点击项 -->
+        <a v-else class="redirect" @click.prevent="onLinkClick(item)">
+            {{item.meta.title}}
+        </a>
+      </el-breadcrumb-item>
+
+    </transition-group>
   </el-breadcrumb>
 </template>
 
@@ -42,6 +46,7 @@ watch(
   route, // 监听对象
   () => {
     // 监听的 回调函数
+    // 一旦路由发生变化，更新面包屑数据
     getBreadcrumbData()
   },
   {
