@@ -11,7 +11,8 @@
 
       <!-- 标题随着左侧栏的开闭而翻转 -->
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">
-       xiaoyun-admin
+       <!-- xiaoyun-admin -->
+       {{ $t('msg.test') }}
       </h1>
     </div>
 
