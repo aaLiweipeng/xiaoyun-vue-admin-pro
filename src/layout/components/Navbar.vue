@@ -6,43 +6,45 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
 
-    <div class="navbar-sub-right">
-      <!-- 头像下拉菜单外框 -->
-      <div class="right-menu">
-        <!-- 头像下拉菜单 -->
-        <!-- trigger 点击触发 -->
-        <el-dropdown class="avatar-container" trigger="click">
+    <!-- 头像下拉菜单外框 -->
+    <div class="right-menu">
 
-          <!-- 自定义菜单触发按钮组外框 -->
-          <div class="avatar-wrapper">
-            <!-- 头像显示部分 -->
-            <el-avatar
-              shape="square"
-              :size="40"
-              :src="$store.getters.userInfo.avatar"
-            ></el-avatar>
-            <i class="el-icon-s-tools"></i>
-          </div>
+      <!-- 语言切换按钮 -->
+      <lang-select class="right-menu-item hover-effect" />
 
-          <template #dropdown>
-            <el-dropdown-menu class="user-dropdown">
-              <router-link to="/">
-                <el-dropdown-item> 首页 </el-dropdown-item>
-              </router-link>
+      <!-- 头像下拉菜单 -->
+      <!-- trigger 点击触发 -->
+      <el-dropdown class="avatar-container" trigger="click">
 
-              <!-- a标签跳转 创建新页面 -->
-              <a target="_blank" href="">
-                <el-dropdown-item>课程主页</el-dropdown-item>
-              </a>
+        <!-- 自定义菜单触发按钮组外框 -->
+        <div class="avatar-wrapper">
+          <!-- 头像显示部分 -->
+          <el-avatar
+            shape="square"
+            :size="40"
+            :src="$store.getters.userInfo.avatar"
+          ></el-avatar>
+          <i class="el-icon-s-tools"></i>
+        </div>
 
-              <!-- divided 用于显示分割线。看文档 -->
-              <el-dropdown-item divided @click="logout">
-                退出登录
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-      </div>
+        <template #dropdown>
+          <el-dropdown-menu class="user-dropdown">
+            <router-link to="/">
+              <el-dropdown-item> 首页 </el-dropdown-item>
+            </router-link>
+
+            <!-- a标签跳转 创建新页面 -->
+            <a target="_blank" href="">
+              <el-dropdown-item>课程主页</el-dropdown-item>
+            </a>
+
+            <!-- divided 用于显示分割线。看文档 -->
+            <el-dropdown-item divided @click="logout">
+              退出登录
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -51,6 +53,7 @@
 import { useStore } from 'vuex'
 import Hamburger from '../../components/Hamburger/hamburger.vue'
 import Breadcrumb from '../../components/Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect'
 
 const store = useStore()
 // 退出登录点击事件
@@ -84,21 +87,28 @@ const logout = () => {
 
   // 面包屑
   .breadcrumb-container {
-    float: left;
-  }
-
-  .navbar-sub-right{
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
   }
 
   // 居右侧头像菜单
   .right-menu {
-    display: flex;
+    flex: 1; // 对父兄弟，自己占1
+    display: flex;// 对子女，控制子女为flex
+    justify-content: flex-end;// 规定腔内子女居右
     // align-items: center;
-    justify-content: right;
     padding-right: 16px;
+
+    ::v-deep .right-menu-item {
+         display: inline-block;
+         padding: 0 18px 0 0;
+         font-size: 24px;
+         color: #5a5e66;
+         vertical-align: text-bottom;
+         line-height: 50px;// 调解高度
+
+         &.hover-effect {
+           cursor: pointer;
+         }
+    }
 
     ::v-deep .avatar-container {
       cursor: pointer;// 指定 鼠标移过变成手指图标
