@@ -50,7 +50,7 @@ const iconName = computed(() => `#icon-${props.icon}`)
 
 <style lang="scss" scoped>
 .svg-icon {
-  width: 1em;
+  width: 1em;// 注意这里指定了宽高度
   height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;

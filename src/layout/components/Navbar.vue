@@ -9,6 +9,9 @@
     <!-- 头像下拉菜单外框 -->
     <div class="right-menu">
 
+      <!-- 主题颜色按钮 -->
+      <theme-picker class="right-menu-item hover-effect"></theme-picker>
+
       <!-- 语言切换按钮 -->
       <lang-select class="right-menu-item hover-effect" />
 
@@ -54,6 +57,7 @@ import { useStore } from 'vuex'
 import Hamburger from '../../components/Hamburger/hamburger.vue'
 import Breadcrumb from '../../components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect'
+import ThemePicker from '@/components/ThemeSelect/index'
 
 const store = useStore()
 // 退出登录点击事件
@@ -92,7 +96,7 @@ const logout = () => {
   // 居右侧头像菜单
   .right-menu {
     flex: 1; // 对父兄弟，自己占1
-    display: flex;// 对子女，控制子女为flex
+    display: flex;// 对子女，控制子女为flex！！ 宽度按流式！
     justify-content: flex-end;// 规定腔内子女居右
     // align-items: center;
     padding-right: 16px;
@@ -103,7 +107,7 @@ const logout = () => {
          font-size: 24px;
          color: #5a5e66;
          vertical-align: text-bottom;
-         line-height: 50px;// 调解高度
+         line-height: 50px;// 调节高度
 
          &.hover-effect {
            cursor: pointer;
