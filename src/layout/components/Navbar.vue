@@ -9,6 +9,9 @@
     <!-- 头像下拉菜单外框 -->
     <div class="right-menu">
 
+      <!-- 全屏设置按钮 -->
+      <screenfull class="right-menu-item hover-effect" />
+
       <!-- 主题颜色按钮 -->
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
 
@@ -58,6 +61,7 @@ import Hamburger from '../../components/Hamburger/hamburger.vue'
 import Breadcrumb from '../../components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect/index'
+import Screenfull from '@/components/Screenfull'
 
 const store = useStore()
 // 退出登录点击事件
