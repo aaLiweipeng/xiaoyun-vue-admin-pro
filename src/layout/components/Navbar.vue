@@ -9,6 +9,9 @@
     <!-- 头像下拉菜单外框 -->
     <div class="right-menu">
 
+      <!-- 头部搜索栏 -->
+      <header-search class="right-menu-item hover-effect"></header-search>
+
       <!-- 全屏设置按钮 -->
       <screenfull class="right-menu-item hover-effect" />
 
@@ -62,6 +65,7 @@ import Breadcrumb from '../../components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect/index'
 import Screenfull from '@/components/Screenfull'
+import HeaderSearch from '@/components/HeaderSearch'
 
 const store = useStore()
 // 退出登录点击事件
