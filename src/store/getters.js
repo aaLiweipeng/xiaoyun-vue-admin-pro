@@ -29,6 +29,9 @@ const getters = {
 
   language: state => state.app.language,
 
-  mainColor: state => state.theme.mainColor
+  mainColor: state => state.theme.mainColor,
+
+  // TagView的访问
+  tagsViewList: state => state.app.tagsViewList
 }
 export default getters

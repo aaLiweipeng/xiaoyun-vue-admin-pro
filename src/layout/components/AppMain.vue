@@ -7,14 +7,14 @@
 <script setup>
 import { watch } from 'vue'
 import { isTags } from '@/utils/tags'
-import { generateTitle } from '@/utils/i18n'
+import { generateTitle, watchSwitchLang } from '@/utils/i18n'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 const route = useRoute()
 
 /**
- * 根据一定规律 生成 title
+ * 根据一定规律 生成 title【有i18操作】
  * @route 输入路由
  * @return title 字符串
  */
@@ -25,7 +25,7 @@ const getTitle = (route) => {
     const pathArr = route.path.split('/')
     title = pathArr[pathArr.length - 1]
   } else {
-    // 如果有meta 获取国际化结果字符串
+    // 如果有meta 获取【国际化结果】字符串
     title = generateTitle(route.meta.title)
   }
   return title
@@ -58,6 +58,26 @@ watch(
     immediate: true
   }
 )
+
+/**
+  * 国际化 tags；
+  * 传一个回调过去，国际化变量修改时，会回调这里！！
+  *
+  * 回调处理内容：
+  * 遍历一遍 tagsViewList
+  * 重新 基于i18计算title值，更新tag显示
+  */
+watchSwitchLang(() => {
+  store.getters.tagsViewList.forEach((route, index) => {
+    store.commit('app/changeTagsView', {
+      index,
+      tag: {
+        ...route,
+        title: getTitle(route) // 【有i18操作】
+      }
+    })
+  })
+})
 </script>
 
 <style lang="scss" scoped>

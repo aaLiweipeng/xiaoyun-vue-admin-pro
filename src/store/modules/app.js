@@ -41,6 +41,15 @@ export default {
         state.tagsViewList.push(tag) // 存VueX
         setItem(TAGS_VIEW, state.tagsViewList)// 存LocalStorage
       }
+    },
+
+    /**
+     * 为指定的 tag 修改 title
+     * 基于 tagsViewList 修改
+     */
+    changeTagsView (state, { index, tag }) {
+      state.tagsViewList[index] = tag // 修改VueX
+      setItem(TAGS_VIEW, state.tagsViewList) // 修改LocalStorage
     }
   },
   actions: {}
