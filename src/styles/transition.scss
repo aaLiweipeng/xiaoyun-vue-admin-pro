@@ -1,3 +1,5 @@
+// 编写动画的预编译代码，最后在index.scss中引入到全局预编译
+
 // 面包屑动画
 // 动画过程时延
 .breadcrumb-enter-active,
@@ -15,4 +17,21 @@
 // 使得进场组件可以在出场组件的原位进行动画【NB 牛掰】
 .breadcrumb-leave-active {
     position: absolute;
+}
+
+// AppMain页面路由切换动画
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.5s;
+}
+
+.fade-transform-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
