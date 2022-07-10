@@ -4,10 +4,13 @@
 
     <hamburger class="hamburger-container" />
     <!-- 面包屑 -->
-    <breadcrumb class="breadcrumb-container" />
+    <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
 
     <!-- 头像下拉菜单外框 -->
     <div class="right-menu">
+
+      <!-- 引导 -->
+      <guide class="right-menu-item hover-effect" />
 
       <!-- 头部搜索栏 -->
       <header-search class="right-menu-item hover-effect"></header-search>
@@ -66,6 +69,7 @@ import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect/index'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 
 const store = useStore()
 // 退出登录点击事件

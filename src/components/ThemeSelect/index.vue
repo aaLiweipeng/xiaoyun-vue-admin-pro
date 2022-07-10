@@ -8,9 +8,11 @@
     @command="handleSetTheme"
   >
     <!-- 外露按钮 -->
-    <div>
+    <div id="guide-theme">
       <el-tooltip :content="$t('msg.navBar.themeChange')">
-        <div><svg-icon icon="change-theme" /></div>
+        <div>
+          <svg-icon icon="change-theme" />
+        </div>
       </el-tooltip>
     </div>
 

@@ -1,5 +1,6 @@
 <template>
   <div
+    id="guide-search"
     :class="{ show: isShow }"
     class="header-search"
     @click.stop="onShowClick">
