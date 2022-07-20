@@ -1,11 +1,20 @@
-<template lang="">
-    <div>
-        项目介绍
-    </div>
+<template>
+  <div class="">
+    <pan-thumb
+      :image="$store.getters.userInfo.avatar"
+      :height="'100px'"
+      :width="'100px'"
+      :hoverable="false"
+    >
+      <div>Hello</div>
+      {{ $store.getters.userInfo.title }}
+    </pan-thumb>
+  </div>
 </template>
-<script>
-export default {
-}
+
+<script setup>
+import PanThumb from '@/components/PanThumb'
+
 </script>
-<style lang="">
+<style>
 </style>

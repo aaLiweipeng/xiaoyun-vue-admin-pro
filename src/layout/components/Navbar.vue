@@ -63,8 +63,8 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import Hamburger from '../../components/Hamburger/hamburger.vue'
-import Breadcrumb from '../../components/Breadcrumb/index.vue'
+import Hamburger from '@/components/Hamburger/hamburger.vue'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect'
 import ThemePicker from '@/components/ThemeSelect/index'
 import Screenfull from '@/components/Screenfull'
