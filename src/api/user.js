@@ -8,3 +8,12 @@ export const GetFeature = () => {
     url: '/user/feature'
   })
 }
+
+/**
+ * 章节接口
+ */
+export const GetChapter = () => {
+  return request({
+    url: '/user/chapter'
+  })
+}
