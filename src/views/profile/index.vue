@@ -2,7 +2,7 @@
   <div class="my-container">
     <el-row>
       <el-col :span="6">
-        <project-card class="user-card"></project-card>
+        <project-card class="user-card" :features="featureData" />
       </el-col>
 
       <el-col :span="18">
@@ -33,9 +33,17 @@ import ProjectCard from './components/ProjectCard.vue'
 import Chapter from './components/Chapter.vue'
 import Feature from './components/Feature.vue'
 import Author from './components/Author.vue'
+import { GetFeature } from '@/api/user'
 import { ref } from 'vue'
 
 const activeName = ref('feature')
+
+// 获取账号的项目功能
+const featureData = ref([])
+const getFeatureData = async () => {
+  featureData.value = await GetFeature()
+}
+getFeatureData()
 </script>
 
 <style lang="scss" scoped>
