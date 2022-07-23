@@ -3,21 +3,24 @@
   <div class="my-container">
     <el-row>
       <el-col :span="6">
+        <!-- 项目介绍模块 -->
         <project-card class="user-card" :features="featureData" />
       </el-col>
 
       <el-col :span="18">
         <el-card>
           <el-tabs v-model="activeName">
-
+            <!-- 功能模块 -->
             <el-tab-pane :label="$t('msg.profile.feature')" name="feature">
-              <feature />
+              <feature :features="featureData" />
             </el-tab-pane>
 
+            <!-- 章节模块 -->
             <el-tab-pane :label="$t('msg.profile.chapter')" name="chapter">
               <chapter />
             </el-tab-pane>
 
+            <!-- 作者模块 -->
             <el-tab-pane :label="$t('msg.profile.author')" name="author">
               <author />
             </el-tab-pane>
