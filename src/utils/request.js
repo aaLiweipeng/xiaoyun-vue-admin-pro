@@ -20,7 +20,7 @@ service.interceptors.response.use(
     console.log('request.js response message -- \n', message)
     console.log('request.js response data -- \n', data)
 
-    //   要根据success的成功与否决定下面的操作
+    // 要根据success的成功与否决定下面的操作
     if (success) {
       // 请求成功，业务接口返回true，
       // 则直接返回数据部分，减少顶层代码的数据引用层数
@@ -69,6 +69,10 @@ service.interceptors.request.use(
       // config.headers.Authorization = `Bearer ${store.getters.token}`
       config.headers.Authorization = `${store.getters.token}`
     }
+
+    // 配置接口国际化
+    config.headers['Accept-Language'] = store.getters.language
+
     return config // 必须返回配置
   },
   error => {

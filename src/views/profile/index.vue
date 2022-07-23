@@ -1,3 +1,4 @@
+// 个人中心页面
 <template>
   <div class="my-container">
     <el-row>
@@ -35,6 +36,7 @@ import Feature from './components/Feature.vue'
 import Author from './components/Author.vue'
 import { GetFeature } from '@/api/user'
 import { ref } from 'vue'
+import { watchSwitchLang } from '@/utils/i18n'
 
 const activeName = ref('feature')
 
@@ -44,6 +46,9 @@ const getFeatureData = async () => {
   featureData.value = await GetFeature()
 }
 getFeatureData()
+
+// 监听语言切换
+watchSwitchLang(getFeatureData)
 </script>
 
 <style lang="scss" scoped>
