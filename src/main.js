@@ -10,6 +10,7 @@ import installIcons from './icons/index'
 import './permission'
 // i18n （导入放到 APP.vue 导入之前，因须在 app.vue 中使用国际化内容）
 import i18n from '@/i18n'
+import installFilter from './filter/index'
 
 const app = createApp(App)
 installElementPlus(app)
@@ -19,3 +20,5 @@ app
   .use(router)
   .use(i18n)
   .mount('#app')
+
+installFilter(app)

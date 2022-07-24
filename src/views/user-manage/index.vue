@@ -19,7 +19,10 @@
         <el-table-column prop="mobile" :label="$t('msg.excel.mobile')">
         </el-table-column>
 
-        <el-table-column :label="$t('msg.excel.avatar')" align="center">
+        <el-table-column
+         :label="$t('msg.excel.avatar')"
+         width="110"
+         align="center">
           <template v-slot="{ row }">
             <el-image
               class="avatar"
@@ -31,6 +34,8 @@
 
         <el-table-column :label="$t('msg.excel.role')">
           <template #default="{ row }">
+
+            <!-- 如果有 角色列表数据，遍历它，生成tag -->
             <div v-if="row.role && row.role.length > 0">
               <el-tag
                 v-for="item in row.role"
@@ -47,7 +52,10 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')">
+        <el-table-column :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
         </el-table-column>
 
         <!-- 操作按钮组 -->
