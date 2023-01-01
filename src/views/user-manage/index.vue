@@ -118,6 +118,7 @@ const getListData = async () => {
   tableData.value = result.list
   total.value = result.total
 }
+// 一进来就运行，获取数据！
 getListData()
 
 // 监听语言切换
