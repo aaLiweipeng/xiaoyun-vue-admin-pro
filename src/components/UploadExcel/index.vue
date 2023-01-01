@@ -32,7 +32,8 @@
 <script setup>
 import XLSX from 'xlsx'
 import { defineProps, ref } from 'vue'
-import { getHeaderRow } from './utils'
+import { getHeaderRow, isExcel } from './utils'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps({
   // 上传前回调
@@ -58,8 +59,38 @@ const handleChange = e => {
   upload(rawFile)
 }
 
-const handleDrop = () => {}
-const handleDragover = () => {}
+/**
+ * 拖拽文本释放时触发
+ */
+const handleDrop = e => {
+  // 判断上传状态 如果有文件已经在上传中 则跳过
+  if (loading.value) return
+
+  // 判断文件数量
+  const files = e.dataTransfer.files
+  if (files.length !== 1) {
+    ElMessage.error('必须要为一个文件')
+    return
+  }
+
+  // 判断文件格式
+  const rawFile = files[0]
+  if (!isExcel(rawFile)) {
+    ElMessage.error('文件必须是 .xlsx, .xls, .csv 格式')
+    return false
+  }
+  // 触发上传事件
+  upload(rawFile)
+}
+
+/**
+ * 拖拽悬停时触发
+ */
+const handleDragover = e => {
+  // https://developer.mozilla.org/zh-CN/docs/Web/API/DataTransfer/dropEffect
+  // 在新位置 生成 源项的副本
+  e.dataTransfer.dropEffect = 'copy'
+}
 
 /**
  * 触发上传事件
