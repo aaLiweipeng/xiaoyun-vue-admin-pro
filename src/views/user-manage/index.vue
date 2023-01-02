@@ -99,18 +99,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
+import { ref, onActivated } from 'vue'
 
 // 数据相关
-const tableData = ref([])
+const tableData = ref([]) // 如此便可实现表格响应式
 const total = ref(0)
 const page = ref(1)
 const size = ref(2)
 // 获取数据的方法
 const getListData = async () => {
+  console.log('/user/manage getListData() --- ')
   const result = await getUserManageList({
     page: page.value,
     size: size.value
@@ -120,6 +121,9 @@ const getListData = async () => {
 }
 // 一进来就运行，获取数据！
 getListData()
+
+// 处理导入用户后数据不重新加载的问题【因为keep alive】
+onActivated(getListData)
 
 // 监听语言切换
 watchSwitchLang(getListData)

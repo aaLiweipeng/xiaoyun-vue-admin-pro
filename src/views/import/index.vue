@@ -4,7 +4,7 @@
 
 <script setup>
 import UploadExcel from '@/components/UploadExcel'
-import { USER_RELATIONS } from './utils'
+import { USER_RELATIONS, formatDate } from './utils'
 // import { userBatchImport } from '@/api/user-manage'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
@@ -28,7 +28,7 @@ const onSuccess = async ({ header, results }) => {
 }
 
 /**
-  * 整理数据；把中文key 转换成 英文key，生成新数据数组
+  * 整理数据；把中文key 转换成 英文key，生成新的数据数组
   */
 const generateData = results => {
   const arr = []
@@ -36,6 +36,11 @@ const generateData = results => {
     const userInfo = {} // 定义行数据 缓存容器
     // 把中文key 转换成 英文key
     Object.keys(item).forEach(key => {
+      if (USER_RELATIONS[key] === 'openTime') {
+        // 针对 `openTime` 进行单独处理
+        userInfo[USER_RELATIONS[key]] = formatDate(item[key])
+        return
+      }
       userInfo[USER_RELATIONS[key]] = item[key]
     })
     arr.push(userInfo)
