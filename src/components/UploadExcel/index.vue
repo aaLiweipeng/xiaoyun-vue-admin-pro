@@ -56,6 +56,11 @@ const handleChange = e => {
   const files = e.target.files // 取出事件携带的数据【文件列表】
   const rawFile = files[0] // only use files[0]
   if (!rawFile) return
+  // 判断文件格式
+  if (!isExcel(rawFile)) {
+    ElMessage.error('文件必须是 .xlsx, .xls, .csv 格式')
+    return false
+  }
   upload(rawFile)
 }
 
