@@ -67,7 +67,7 @@
           width="260"
           align="center"
         >
-          <template #default>
+          <template #default="{ row }">
             <el-button type="primary" size="mini">{{
               $t('msg.excel.show')
             }}</el-button>
@@ -76,7 +76,7 @@
               $t('msg.excel.showRole')
             }}</el-button>
 
-            <el-button type="danger" size="mini">{{
+            <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
               $t('msg.excel.remove')
             }}</el-button>
           </template>
@@ -101,8 +101,13 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { getUserManageList } from '@/api/user-manage'
+// import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref, onActivated } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+const i18n = useI18n()
 
 // 数据相关
 const tableData = ref([]) // 如此便可实现表格响应式
@@ -151,6 +156,23 @@ const router = useRouter()
  */
 const onImportExcelClick = () => {
   router.push('/user/import')
+}
+
+/**
+  * 删除按钮点击事件
+  */
+const onRemoveClick = row => {
+  ElMessageBox.confirm(
+    i18n.t('msg.excel.dialogTitle1') +
+      row.username +
+      i18n.t('msg.excel.dialogTitle2'),
+    { type: 'warning' }
+  ).then(async () => {
+    // await deleteUser(row._id) // 调用删除接口
+    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
 }
 </script>
 
