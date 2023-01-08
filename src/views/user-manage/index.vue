@@ -5,7 +5,7 @@
         <el-button type="primary" @click="onImportExcelClick">
           {{ $t('msg.excel.importExcel') }}
         </el-button>
-        <el-button type="success">
+        <el-button type="success" @click="onToExcelClick">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
       </div>
@@ -95,6 +95,8 @@
       >
       </el-pagination>
     </el-card>
+
+    <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
   </div>
 </template>
 
@@ -106,11 +108,12 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { ref, onActivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import ExportToExcel from './components/Export2Excel.vue'
 
 const i18n = useI18n()
 
 // 数据相关
-const tableData = ref([]) // 如此便可实现表格响应式
+const tableData = ref([]) // 如此便可实现表格【响应式】
 const total = ref(0)
 const page = ref(1)
 const size = ref(2)
@@ -156,6 +159,14 @@ const router = useRouter()
  */
 const onImportExcelClick = () => {
   router.push('/user/import')
+}
+
+/**
+ * excel 导出点击事件
+ */
+const exportToExcelVisible = ref(false)
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
 }
 
 /**
