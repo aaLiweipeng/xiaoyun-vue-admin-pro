@@ -26,6 +26,7 @@ import { defineProps, defineEmits, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 // import { getUserManageAllList } from '@/api/user-manage'
+import { USER_RELATIONS } from '@/views/import/utils'
 
 defineProps({
   modelValue: {
@@ -111,8 +112,49 @@ const onConfirm = async () => {
     ]
   }).list
 
-  console.log(allUser)
+  // 导入工具包
+  const excel = await import('@/utils/Export2Excel')
+  const data = formatJson(USER_RELATIONS, allUser)
+
+  // 完成 `excel` 导出
+  excel.export_json_to_excel({
+    // excel 表头
+    header: Object.keys(USER_RELATIONS),
+    // excel 数据（二维数组结构）
+    data,
+    // 文件名称
+    filename: excelName.value || exportDefaultName,
+    // 是否自动列宽
+    autoWidth: true,
+    // 文件类型
+    bookType: 'xlsx'
+  })
+
   closed()
+}
+
+// 该方法负责将 对象数组 转化成 二维数组
+const formatJson = (headers, rows) => {
+  // 首先遍历数组
+  // [{ username: '张三'},{},{}]  => [[’张三'],[],[]]
+  // !!  把每个item 映射成一个 按headers(中文表头键数组） 排列的 值数组 !! ————
+  return rows.map(item => {
+    // 这里item是一个数据JSOb，但是 Object.keys(headers).map() 返回的已绝对是一个数组
+    // Object.keys(headers) 是 中文键数组【其实就是Excel表头数组】
+    return Object.keys(headers).map(key => {
+      // 角色字段 特殊处理
+      if (headers[key] === 'role') {
+        const roles = item[headers[key]]
+
+        // 取角色名，编成数组字符串  {id: "1", title: "超级管理员"} => 超级管理员
+        return JSON.stringify(roles.map(role => role.title))
+      }
+      // headers[key] 中文键变英文键； item[headers[key]]取对象的属性值；
+      // !! 所以这波 map 是把 中文键数组 映射成 键对应的对象属性的值数组 !! ——————
+      // 【看着表头中文键，去数据对象中取值】
+      return item[headers[key]]
+    })
+  })
 }
 
 /**
