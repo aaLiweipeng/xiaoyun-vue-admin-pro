@@ -27,6 +27,7 @@ import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 // import { getUserManageAllList } from '@/api/user-manage'
 import { USER_RELATIONS } from '@/views/import/utils'
+import { dateFilter } from '@/filter'
 
 defineProps({
   modelValue: {
@@ -149,6 +150,12 @@ const formatJson = (headers, rows) => {
         // 取角色名，编成数组字符串  {id: "1", title: "超级管理员"} => 超级管理员
         return JSON.stringify(roles.map(role => role.title))
       }
+
+      // 时间特殊处理
+      if (headers[key] === 'openTime') {
+        return dateFilter(item[headers[key]])
+      }
+
       // headers[key] 中文键变英文键； item[headers[key]]取对象的属性值；
       // !! 所以这波 map 是把 中文键数组 映射成 键对应的对象属性的值数组 !! ——————
       // 【看着表头中文键，去数据对象中取值】
