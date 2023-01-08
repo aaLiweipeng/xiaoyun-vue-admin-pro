@@ -156,7 +156,8 @@ const readerData = rawFile => {
 }
 
 /**
- * 把 根据导入内容，生成的数据 通过回调传递出去
+ * 把 根据导入内容，生成的数据
+ * 通过 调用外部回调 传递出去
  */
 const generateData = excelData => {
   props.onSuccess && props.onSuccess(excelData)
